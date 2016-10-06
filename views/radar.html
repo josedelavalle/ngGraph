@@ -1,0 +1,10 @@
+<canvas id="radar" class="chart chart-radar"
+  chart-data="data" chart-options="options" chart-labels="labels">
+</canvas>
+<div class="userInput" ng-repeat="y in data track by $index">
+
+	<input type="textbox" ng-repeat="x in y track by $index" ng-model="x" style="border:1px solid  {{myChartColors[$parent.$index]}}">
+</div>
+<div class="container-fluid">  		       
+	<button type="button" class="btn btn-primary" ng-click="randomize()">Randomize</button>
+</div>
