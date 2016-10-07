@@ -1,6 +1,6 @@
 
 var app = angular.module("app", ["chart.js","ngRoute"]);
-app.constant('myChartColors', ['#00ADF9', '#FF8A80']);
+app.constant('myChartColors', ['#00ADF9', '#FF8A80', '#432134', '#8A43B3']);
 app.config(['$routeProvider', 'ChartJsProvider', 'myChartColors', function($routeProvider, ChartJsProvider, myChartColors){
 	
 	ChartJsProvider.setOptions({ chartColors: myChartColors });
@@ -48,9 +48,12 @@ app.controller("appController", ['$scope', '$route', '$routeParams', '$location'
   $scope.series = ['Series A', 'Series B'];
   $scope.data = [
     [65, 59, 80, 81, 56, 55, 40],
-    [28, 48, 40, 19, 86, 27, 90]
+    [28, 48, 40, 19, 86, 27, 90],
+    [89, 34, 57, 20, 34, 94, 23],
+    [8, 32, 19, 34, 69, 75, 32]
   ];
   $scope.myChartColors = myChartColors;
+
   $scope.randomize = function () {
       $scope.data = $scope.data.map(function (data) {
         return data.map(function (y) {
@@ -60,6 +63,12 @@ app.controller("appController", ['$scope', '$route', '$routeParams', '$location'
         });
       });
     };
+  $scope.goToggle = function () {
+  		
+  		if($('#go').checked()) {
+  			setTimeout($scope.randomize, 200);
+  		}
+  };
   $scope.onClick = function (points, evt) {
     console.log(points, evt);
   };
@@ -85,7 +94,7 @@ app.controller("appController", ['$scope', '$route', '$routeParams', '$location'
  
 }]);
 
-app.controller("BaseCtrl", 'myChartColors', ['$scope', function ($scope, 'myChartColors') {
+app.controller("BaseCtrl", ['$scope', function ($scope) {
      $scope.labels = ["Download Sales", "In-Store Sales", "Mail-Order Sales", "Tele Sales", "Corporate Sales"];
      $scope.data = [
     	[65, 59, 80, 81, 56, 55, 40],
@@ -106,4 +115,5 @@ app.controller("BaseCtrl", 'myChartColors', ['$scope', function ($scope, 'myChar
          'pie' : 'polarArea';
      };
 }]);
+
 
