@@ -34,7 +34,7 @@ body {
 }
 
 body, input, select, textarea {
-	color: _palette(fg);
+	color: "ddd";
 	font-family: _font(family);
 	font-size: 15pt;
 	font-weight: _font(weight);
@@ -46,9 +46,9 @@ main {
 #titleRow {
   margin: 70px auto 30px auto;
   width:100%;
-  padding-top:100px;
+  padding-top:30px;
   max-width: 1000px;
-  min-height: 500px;
+  min-height: 100px;
   text-align: center;
   vertical-align:middle;
   display:block;
@@ -159,6 +159,7 @@ nav > ul {
   background: #39454b;
   border-radius: 5px;
   text-align:center;
+  z-index:9999;
 }
 nav > ul > li {
   float: left;
@@ -170,6 +171,7 @@ nav > ul > li {
   font-size: 14px;
   color: white;
   cursor: pointer;
+  z-index:100;
 }
 nav > ul > li:hover {
   background: black;
@@ -274,7 +276,7 @@ main{
   width: 80%;
   margin: 30px auto;
   border-radius: 10px;
-  input[type="textbox"]{
+  input[type="number"]{
   	border-radius:5px;
 
   }
@@ -400,7 +402,7 @@ main{
 
 	#footer {
 		font-family: FontAwesome !important;
-		position: fixed;
+		// position: fixed;
 		height: 5em;
 		line-height: 5em;
 		margin: 0;

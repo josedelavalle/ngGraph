@@ -25,7 +25,7 @@ body {
   letter-spacing: 0.5px; }
 
 body, input, select, textarea {
-  color: val((bg: #1c1d26, bg-transparent: rgba(23, 24, 32, 0.95), fg-bold: #ffffff, fg: rgba(255, 255, 255, 0.75), fg-light: rgba(255, 255, 255, 0.5), fg-lighter: rgba(255, 255, 255, 0.15), border: rgba(255, 255, 255, 0.3), border-bg: rgba(255, 255, 255, 0.075), border2: rgba(255, 255, 255, 0.5), border2-bg: rgba(255, 255, 255, 0.25), accent1: #e44c65, accent2: #272833, accent2-transparent: rgba(39, 40, 51, 0.965), accent3: #5480f1, accent4: #39c088), fg...);
+  color: "ddd";
   font-family: val((family: "Roboto", Helvetica, sans-serif, family-fixed: "Courier New", monospace, weight: 100, weight-bold: 300), family...);
   font-size: 15pt;
   font-weight: val((family: "Roboto", Helvetica, sans-serif, family-fixed: "Courier New", monospace, weight: 100, weight-bold: 300), weight...);
@@ -34,9 +34,9 @@ body, input, select, textarea {
 #titleRow {
   margin: 70px auto 30px auto;
   width: 100%;
-  padding-top: 100px;
+  padding-top: 30px;
   max-width: 1000px;
-  min-height: 500px;
+  min-height: 100px;
   text-align: center;
   vertical-align: middle;
   display: block; }
@@ -122,7 +122,8 @@ nav > ul {
   display: inline-block;
   background: #39454b;
   border-radius: 5px;
-  text-align: center; }
+  text-align: center;
+  z-index: 9999; }
 
 nav > ul > li {
   float: left;
@@ -133,7 +134,8 @@ nav > ul > li {
   text-transform: uppercase;
   font-size: 14px;
   color: white;
-  cursor: pointer; }
+  cursor: pointer;
+  z-index: 100; }
 
 nav > ul > li:hover {
   background: black;
@@ -222,7 +224,7 @@ main {
   width: 80%;
   margin: 30px auto;
   border-radius: 10px; }
-  main input[type="textbox"] {
+  main input[type="number"] {
     border-radius: 5px; }
 
 .content {
@@ -326,7 +328,6 @@ main {
 /* Footer */
 #footer {
   font-family: FontAwesome !important;
-  position: fixed;
   height: 5em;
   line-height: 5em;
   margin: 0;

@@ -1,5 +1,5 @@
 
-var app = angular.module("app", ['chart.js','ngRoute']);
+var app = angular.module('app', ['chart.js','ngRoute','ngMaterial']);
 app.constant('myChartColors', ['#00ADF9', '#FF8A80', '#432134', '#8A43B3']);
 
 app.config(['$routeProvider', '$locationProvider', 'ChartJsProvider', 'myChartColors', function($routeProvider, $locationProvider, ChartJsProvider, myChartColors){
@@ -59,7 +59,10 @@ app.controller("appController", ['$scope', '$route', '$routeParams', '$location'
     [8, 32, 19, 34, 69, 75, 32]
   ];
   $scope.myChartColors = myChartColors;
-
+  $scope.logValue = function (x, y) { 
+  	$scope.data[y][this.$index] = x;
+  }; 
+  
   $scope.randomize = function () {
       $scope.data = $scope.data.map(function (data) {
         return data.map(function (y) {
@@ -69,6 +72,9 @@ app.controller("appController", ['$scope', '$route', '$routeParams', '$location'
         });
       });
     };
+  $scope.updateData = function() {
+  	this.value = $scope.data;
+  };
   $scope.goToggle = function () {
   		
   		if($('#go').checked()) {
