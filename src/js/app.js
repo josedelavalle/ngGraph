@@ -1,8 +1,9 @@
 
-var app = angular.module("app", ["chart.js","ngRoute"]);
+var app = angular.module("app", ['chart.js','ngRoute']);
 app.constant('myChartColors', ['#00ADF9', '#FF8A80', '#432134', '#8A43B3']);
-app.config(['$routeProvider', 'ChartJsProvider', 'myChartColors', function($routeProvider, ChartJsProvider, myChartColors){
-	
+
+app.config(['$routeProvider', '$locationProvider', 'ChartJsProvider', 'myChartColors', function($routeProvider, $locationProvider, ChartJsProvider, myChartColors){
+		
 	ChartJsProvider.setOptions({ chartColors: myChartColors });
 	$routeProvider
 		.when('/', {
@@ -33,10 +34,15 @@ app.config(['$routeProvider', 'ChartJsProvider', 'myChartColors', function($rout
 			templateUrl: 'views/dynamic.html',
 			controller: 'BaseCtrl'
 		})
+		.when('/404', {
+		    templateUrl: '/partials/404.html',
+		    controller: 'appController'
+		})
 		.otherwise({
-			redirectTo: "/"
+			redirectTo: '/404'
+			
 		});
-
+		$locationProvider.html5Mode(true);
 }]);
 
 
@@ -111,8 +117,7 @@ app.controller("BaseCtrl", ['$scope', function ($scope) {
          });
        };
      $scope.toggle = function () {
-       $scope.type = $scope.type === 'polarArea' ?
-         'pie' : 'polarArea';
+       console.log(this);
      };
 }]);
 

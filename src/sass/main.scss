@@ -12,34 +12,104 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 		font-size: 100%;
 		font: inherit;
 		vertical-align: baseline;
-	}
+}
 
 @-ms-viewport {
 		width: device-width;
-	}
+}
 	
-	html {
-		height: 100%;
-	}
+html {
+	height: 100%;
+}
 
-	body {
-		background: #fff;
-		height: 100%;
-		font-family: FontAwesome, 'Source Sans Pro', sans-serif;
-		font-weight: 300;
-		font-size: 18pt;
-		line-height: 1.75em;
-		color: #39454b;
-		letter-spacing: 0.5px;
-	}
+body {
+	background: #fff;
+	height: 100%;
+	font-family: FontAwesome, 'Source Sans Pro', sans-serif;
+	font-weight: 300;
+	font-size: 18pt;
+	line-height: 1.75em;
+	color: #39454b;
+	letter-spacing: 0.5px;
+}
 
-	body, input, select, textarea {
-		color: _palette(fg);
-		font-family: _font(family);
-		font-size: 15pt;
-		font-weight: _font(weight);
-		line-height: 1.75em;
-	}
+body, input, select, textarea {
+	color: _palette(fg);
+	font-family: _font(family);
+	font-size: 15pt;
+	font-weight: _font(weight);
+	line-height: 1.75em;
+}
+main {
+;
+}
+#titleRow {
+  margin: 70px auto 30px auto;
+  width:100%;
+  padding-top:100px;
+  max-width: 1000px;
+  min-height: 500px;
+  text-align: center;
+  vertical-align:middle;
+  display:block;
+
+}
+
+.button {
+  display: inline-block;
+  padding: 12px 18px;
+  background: #eee;
+  cursor: pointer;
+  margin-top: 20px;
+}
+.button:active,
+.button:hover{
+  background: #ccc;
+}
+
+.title{
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 3em;
+  letter-spacing: 0.75px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.subtitle{
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.75em;
+  font-weight: 300;
+}
+.sentence {
+ 
+}
+.sentence span{
+  opacity: 0;
+  position: relative;
+  display: inline-block;
+}
+.sentence span.active {
+  animation: bounceUp 600ms ease 0ms 1 normal both;
+}
+
+/*bounce top in*/
+@keyframes bounceUp {
+  0% {
+    transform: translate3d(0px, 0px, 0px);
+    opacity: 0;
+  }
+  50% {
+    transform: translate3d(0px, -50px, 0px);
+    opacity: 0.7;
+  }
+  80% {
+    transform: translate3d(0px, 20px, 0px);
+    opacity: 1;
+  }
+  100%{
+    transform: translate3d(0px, 0px, 0px);
+    opacity: 1;
+  }
+}
 .container-fluid {
 	text-align:center;
 	width:auto;
@@ -51,7 +121,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 
 a {
-	color: _palette(accent1);
+	color: white !important;
 	text-decoration: none;
 
 	&:hover {
@@ -73,10 +143,108 @@ h1,h2,h3{
   text-transform: uppercase;
 }
 
+
+nav {
+  //padding: 50px;
+  // display:flex-block;
+  // text-align: center;
+	width:100%;
+	// float: right;
+}
+nav > ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  background: #39454b;
+  border-radius: 5px;
+  text-align:center;
+}
+nav > ul > li {
+  float: left;
+  width: 150px;
+  height: 60px;
+  line-height: 60px;
+  position: relative;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: white;
+  cursor: pointer;
+}
+nav > ul > li:hover {
+  background: black;
+  border-radius: 5px;
+}
+
+ul.drop-menu {
+  position: absolute;
+  top: 100%;
+  left: 0%;
+  width: 100%;
+  padding: 0;
+}
+ul.drop-menu li {
+  background: #39454b;
+  color: rgba(255, 255, 255, 0.7);
+}
+ul.drop-menu li:hover {
+  background: #666;
+}
+ul.drop-menu li:last-child {
+  border-radius: 0px 0px 5px 5px;
+}
+
+ul.drop-menu li {
+  display: none;
+}
+
+li:hover > ul.drop-menu li {
+  display: block;
+}
+
+li:hover > ul.drop-menu.menu-1 {
+	perspective: 1000px;
+	li {
+	opcaity:0;
+
+	@for $i from 1 through 6 {
+		&:nth-child(#{$i}) {
+			animation: menu1 (200ms * $i) ease-in-out forwards;
+		}
+	}
+}
+}
+@keyframes menu1 {
+	0% {
+		opacity: 0;
+		transform: rotateY(-90deg) translateY(30px);
+	}
+	100% {
+		opacity: 1;
+		transform: rotateY(0deg) translateY(0px);
+	}
+}
+
+#thisHeader {
+
+	width:100%;
+	height:60px;
+	background: #39454b;
+	display:inline-block;
+}
+
+
+
+// MENU 1 ---------------
+
+
+
+
 #menu-bar{
   background:  #39454b;
   color: #fff;
   padding: 10px;
+  height:50px;
 }
 
 #menu-bar h1{
@@ -102,10 +270,14 @@ h1,h2,h3{
 }
 
 main{
-  background: #eee;
+  background: #ddd;
   width: 80%;
   margin: 30px auto;
   border-radius: 10px;
+  input[type="textbox"]{
+  	border-radius:5px;
+
+  }
 }
 
 .content{
@@ -227,6 +399,7 @@ main{
 /* Footer */
 
 	#footer {
+		font-family: FontAwesome !important;
 		position: fixed;
 		height: 5em;
 		line-height: 5em;
@@ -238,6 +411,7 @@ main{
 		overflow: hidden;
 		width:100%;
 		text-align:center;
+		vertical-align:middle;
 	}
 
 		#footer a {
@@ -246,8 +420,7 @@ main{
 		}
 
 			#footer a:hover {
-				color: #bbb;
-				color: #b9babb;
+			  font: green;
 			}
 
 		#footer .actions {

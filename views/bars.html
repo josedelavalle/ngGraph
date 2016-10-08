@@ -1,13 +1,14 @@
-<div>
-<canvas id="bar" class="chart chart-bar"
-  chart-data="data" chart-labels="labels"> chart-series="series">
-</canvas>
-</div>
-<div class="userInput" ng-repeat="y in data track by $index">
+<div id="myChart">
+	<canvas id="bar" class="chart chart-bar"
+	  chart-data="data" chart-labels="labels"> chart-series="series">
+	</canvas>
+	</div>
+	<div class="userInput" ng-repeat="y in data track by $index">
 
-	<input type="textbox" ng-repeat="x in y track by $index" ng-model="x" style="border:1px solid  {{myChartColors[$parent.$index]}}">
-</div>
-<div class="container-fluid">  		       
-	<button type="button" class="btn btn-primary" ng-click="randomize()">Randomize</button>
-	<button type="checkbox" class="btn btn-primary">Go</button>
+		<input class="inputBpx" type="textbox" ng-repeat="x in y track by $index" ng-model="x" style="border:1px solid  {{myChartColors[$parent.$index]}}">
+	</div>
+	<div class="container-fluid">  		       
+		<button type="button" class="btn btn-primary" ng-click="randomize()">Randomize</button>
+		<button type="checkbox" class="btn btn-primary">Go</button>
+	</div>
 </div>
