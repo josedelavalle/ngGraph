@@ -5,7 +5,19 @@
 	  <!-- <div class="button" id="myBtn">Click to Animate</div> -->
 	  <div class="container-fluid">  		       
 	  	<button type="button" class="btn btn-primary" ng-click="randomize()">Randomize</button>
+	  	<button type="button" class="btn btn-primary" ng-click="goAPI()">Population</button>
+	  	<!-- <button ng-if="showCountry" type="button" class="btn btn-primary" ng-click="goCountries()">Countries</button> -->
+	  
+	  <h2 ng-bind="title"></h2>
+	  <div ng-if="showCountry">
+		<select id="listCountries">
+		       <option ng-repeat="thisCountry in country.countries" value="{{thisCountry}}">
+		           {{thisCountry}}
+		       </option>
+		    </select>
+		    <button type="button" class="btn btn-primary" ng-click="countrySelected()">Add</button>
 	  </div>
+	</div>
 	</div>
 	<div ng-cloak>
 	  <md-content>
@@ -13,34 +25,19 @@
 	      <md-tab label="Bar">
 	        <md-content class="md-padding">
 	          
-	          <canvas id="bar" class="chart chart-bar"
-	            chart-data="data" chart-labels="labels"> chart-series="series">
-	          </canvas>
+		          <canvas id="bar" class="chart chart-bar"
+		            chart-data="data" chart-labels="labels"> chart-series="series">
+		          </canvas>
 	        </md-content>
 	      </md-tab>
-	      <md-tab label="Radar">
-	        <md-content class="md-padding">
-	          
-	          <canvas id="radar" class="chart chart-radar"
-	            chart-data="data" chart-options="options" chart-labels="labels">
-	          </canvas>
-	        </md-content>
-	      </md-tab>
+
 	      <md-tab label="Line">
 	        <md-content class="md-padding">
 	          
 	          <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-series="series" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick"></canvas>
 	        </md-content>
 	      </md-tab>
-	      <md-tab label="Donut">
-	        <md-content class="md-padding">
-	          
-	          <canvas id="doughnut" class="chart chart-doughnut"
-	          	  chart-data="data" chart-labels="labels">
-	          </canvas>
-	        </md-content>
-	      </md-tab>
-	      
+
 	      <md-tab label="Pie">
 	        <md-content class="md-padding">
 	          
@@ -49,7 +46,28 @@
 	          </canvas>
 	        </md-content>
 	      </md-tab>
+
+		  <md-tab label="Donut">
+		    <md-content class="md-padding">
+		      
+		      <canvas id="doughnut" class="chart chart-doughnut"
+		      	  chart-data="data" chart-labels="labels">
+		      </canvas>
+		    </md-content>
+		  </md-tab>
+	      
+	      <md-tab label="Radar">
+	        <md-content class="md-padding">
+	          
+	          <canvas id="radar" class="chart chart-radar"
+	            chart-data="data" chart-options="options" chart-labels="labels">
+	          </canvas>
+	        </md-content>
+	      </md-tab>
+	      
+	      
+	     
 	    </md-tabs>
 	  </md-content>
 	</div>
-	<div ng-include="'input.html'"></div>
+	<div ng-if="showInput" ng-include="'partials/input.html'"></div>

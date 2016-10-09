@@ -1,0 +1,6 @@
+
+<div class="userInput" ng-repeat="y in data track by $index">
+
+	<input type="number" ng-repeat="x in y track by $index" ng-model="x" ng-change="logValue(x, $parent.$index)" style="border:2px solid  {{myChartColors[$parent.$index]}}">
+</div>
+
