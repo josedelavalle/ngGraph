@@ -195,6 +195,28 @@ li:hover > ul.drop-menu.menu-1 {
   background: #39454b;
   display: inline-block; }
 
+#moreInfo {
+  background: #ccc;
+  margin: auto;
+  width: 100%;
+  height: auto; }
+
+#countriesShown {
+  padding: 10px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  flex-wrap: wrap;
+  -webkit-align-items: center;
+  /* Safari */
+  align-items: center;
+  -webkit-justify-content: center;
+  /* Safari */
+  justify-content: center; }
+  #countriesShown button {
+    width: auto; }
+
 #menu-bar {
   background: #39454b;
   color: #fff;

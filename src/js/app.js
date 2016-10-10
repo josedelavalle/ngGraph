@@ -4,12 +4,11 @@ app.constant('myChartColors', ['#00ADF9', '#FF8A80', '#432134', '#8A43B3']);
 
 app.config(['$routeProvider', '$locationProvider', 'ChartJsProvider', 'myChartColors', function($routeProvider, $locationProvider, ChartJsProvider, myChartColors){
 		
-	ChartJsProvider.setOptions({ chartColors: myChartColors });
+	//ChartJsProvider.setOptions({ chartColors: myChartColors });
 	$locationProvider.html5Mode(true);
 	$routeProvider
 		.when('/', {
-			templateUrl: 'views/home.html',
-			controller: 'appController'
+			templateUrl: 'views/home.html'
 		})
 		.otherwise({
 			redirectTo: '/'
@@ -26,6 +25,7 @@ app.factory('CountryService', function ($resource) {
 });
 
 app.controller("appController", ['$scope', '$http', '$route', '$routeParams', '$location', 'myChartColors', 'UserService', 'CountryService', function($scope, $http, $route, $routeParams, $location, myChartColors, UserService, CountryService) {
+  $scope.allCountries = [];
   $scope.showInput = true;
   $scope.title = "Random Data";
   $scope.$route = $route;
@@ -33,7 +33,7 @@ app.controller("appController", ['$scope', '$http', '$route', '$routeParams', '$
   $scope.$routeParams = $routeParams;
   $scope.labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"];
   
-  $scope.series = ['Series A', 'Series B'];
+  $scope.series = ['Series A', 'Series B', 'Series C', 'Series D'];
   $scope.options = {
   	title: {
   		display: true,
@@ -58,13 +58,16 @@ app.controller("appController", ['$scope', '$http', '$route', '$routeParams', '$
   }; 
   $scope.goAPI = function() {
     		// console.log($scope.users.length);
+    		$scope.allCountries = [];
     		$scope.showCountry = true;
-    		var thisCountry = "US";
+    		var thisCountry = "United States 2016";
+    		$scope.allCountries.push(thisCountry);
+    		console.log($scope.allCountries);
     		$scope.showInput = false;
     		$scope.data = [];
     		$scope.labels = [];
-    		$scope.series = [thisCountry + ' Males', thisCountry + ' Females'];
-    		$scope.title = "2016 " + thisCountry + " Population by Age and Gender";
+    		$scope.series = [thisCountry + ' - Males', thisCountry + ' - Females'];
+    		$scope.title = "2016 Country Population by Age and Gender";
     	// for (var key in $scope.users) {
     	var thisLength = $scope.users.length, tmpArray = [], tmpArray2 = [];
     	for (i = 0; i < thisLength; i = i + 5) {
@@ -77,6 +80,7 @@ app.controller("appController", ['$scope', '$http', '$route', '$routeParams', '$
     	$scope.data.push(tmpArray2);
     	
     };
+
   $scope.goCountries = function() {
   		//console.log(this);
   		$scope.showCountry = true;
@@ -85,27 +89,43 @@ app.controller("appController", ['$scope', '$http', '$route', '$routeParams', '$
   $scope.countrySelected = function() {
   		var tmpArray = [], tmpArray2 = [];
   		var x = document.getElementById("listCountries");
-  		selectedCountry = x.options[x.selectedIndex].value;
-  		var thisURL = encodeURI("http://api.population.io:80/1.0/population/2015/" + selectedCountry);
-  		console.log(thisURL);
-  		var newData = $http.get(thisURL)
-  			.success(function(newData) {
-  				thisLength = newData.length;
-  				for (i = 0; i < thisLength; i = i + 5) {
-		    	 	// console.log($scope.users[i].males);
-		    	 	tmpArray.push(newData[i].males);
-		    	 	tmpArray2.push(newData[i].females);
-		    	 	console.log(newData[i].males);
-		    	 	
-    	}
-    	$scope.data.push(tmpArray);
-    	$scope.data.push(tmpArray2);
-    	$scope.series.push([selectedCountry + ' Males']);
-    	$scope.series.push([selectedCountry + ' Females']);
-  				//$scope.data.push(newData);
-  			});
+  		thisCountry = x.options[x.selectedIndex].value;
+  		x = document.getElementById("listYears");
+  		thisYear = x.options[x.selectedIndex].value;
+  		if ($.inArray(thisCountry, $scope.allCountries) == -1) {
+	  		$scope.allCountries.push(thisCountry + ' ' + thisYear);
+	  		var thisURL = encodeURI("http://api.population.io:80/1.0/population/" + thisYear + "/" + thisCountry);
+	  		// console.log(thisURL);
+	  		var newData = $http.get(thisURL)
+	  			.success(function(newData) {
+	  				thisLength = newData.length;
+	  				for (i = 0; i < thisLength; i = i + 5) {
+			    	 	// console.log($scope.users[i].males);
+			    	 	tmpArray.push(newData[i].males);
+			    	 	tmpArray2.push(newData[i].females);
+			    	 	//console.log(newData[i].males);
+			    	 	
+	    	}
+	    	$scope.data.push(tmpArray);
+	    	$scope.data.push(tmpArray2);
+	    	$scope.series.push([thisCountry + ' ' + thisYear + ' - Males']);
+	    	$scope.series.push([thisCountry + ' ' + thisYear + ' - Females']);
+	  				//$scope.data.push(newData);
+	  			});
+	  	}
   		
   	};
+  $scope.removeCountry = function() {
+  	console.log(this.thisCountry);
+  	var arrPos = $.inArray(this.thisCountry, $scope.allCountries);
+  	console.log(arrPos);
+  	$scope.allCountries.splice(arrPos, 1 );
+  	console.log($scope.series[arrPos]);
+  	$scope.series.splice(arrPos*2, 2 );
+  	console.log($scope.data);
+  	$scope.data.splice(arrPos*2, 2);
+  	console.log($scope.allCountries);
+  };
   $scope.randomize = function () {
   	  $scope.showCountry = false;
   	  $scope.showInput = true;
@@ -197,7 +217,7 @@ app.controller("lineController", ['$scope', '$route', '$http', '$routeParams', '
       ]
     }
   };
- 
+  
 }]);
 
 app.controller("BaseCtrl", ['$scope', function ($scope) {
@@ -220,5 +240,6 @@ app.controller("BaseCtrl", ['$scope', function ($scope) {
        console.log(this);
      };
 }]);
+
 
 
