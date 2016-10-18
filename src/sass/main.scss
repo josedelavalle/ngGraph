@@ -17,7 +17,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 @-ms-viewport {
 		width: device-width;
 }
-	
+
 html {
 	height: 100%;
 }
@@ -80,7 +80,7 @@ main {
   font-weight: 300;
 }
 .sentence {
- 
+
 }
 .sentence span{
   opacity: 0;
@@ -120,7 +120,7 @@ main {
 
 }
 
-a {
+#thisHeader a {
 	color: white !important;
 	text-decoration: none;
 
@@ -240,8 +240,15 @@ li:hover > ul.drop-menu.menu-1 {
 	margin:auto;
 	width:100%;
 	height:auto;
+	display:flex-wrap;
 }
-
+#listYears {
+	// float:left;
+	height:30px;
+}
+#listCountries {
+	height:30px;
+}
 #countriesShown {
 	padding:10px;
 	display: -webkit-flex;
@@ -257,6 +264,9 @@ li:hover > ul.drop-menu.menu-1 {
 	  	width: auto;
 	  }
 }
+
+
+
 
 
 // MENU 1 ---------------

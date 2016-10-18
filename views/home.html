@@ -3,61 +3,86 @@
 	  <h1 class="sentence title">my nggraph</h1>
 	  <h3 class="sentence subtitle">Jose DeLavalle</h3>
 	  <!-- <div class="button" id="myBtn">Click to Animate</div> -->
-	  <div class="container-fluid">  		       
-	  	
-	  	
-	  	
-	  
+	  <div class="container-fluid">
+
+
+
+
 	  <h2 ng-bind="title"></h2>
-	  
+
 	</div>
 	</div>
-	<div class="container-fluid">  
-	  <div id="moreInfo" ng-if="showCountry">
-		<select id="listCountries">
-		    <option ng-repeat="thisCountry in country.countries" ng-bind="thisCountry" value="{{thisCountry}}">
-		    
-		    </option>
-		</select>
-		
-		<select id="listYears">
-			<option value="1956">1956</option>
-			<option value="1966">1966</option>
-			<option value="1976">1976</option>
-			<option value="1986">1986</option>
-			<option value="1996">1996</option>
-			<option value="2006">2006</option>
-			<option selected value="2016">2016</option>
-		</select>
-		<button type="button" class="btn btn-primary" ng-click="countrySelected()">Add</button>
-	    <br>
-		<div id="countriesShown">
-	    	<button type="button" ng-repeat="thisCountry in allCountries" class="btn btn-danger" ng-click="removeCountry()" ng-bind="thisCountry"></button>
-	    </div>
+	<div class="container-fluid">
+
+
+
+			<div id="moreInfo" ng-if="showCountry" class="tbnav">
+
+        <div id="filterCountries" class="search">
+
+            
+								<!-- <input type="text" ng-model="search">
+                <select id="listCountries">
+									<option ng-repeat="thisCountry in country.countries | filter:search" ng-bind="thisCountry" value="{{thisCountry}}">
+
+									</option>
+                </select> -->
+
+								
+								
+								  <input type="text" id="listYears" placeholder="2016" value="2016">
+								  <input type="text" id="listCountries" placeholder="Country" ng-model="selected" uib-typeahead="thisCountry for thisCountry in country.countries | filter:$viewValue | limitTo:8">
+
+
+
+
+
+
+
+								    
+
+
+								
+
+								<button type="button" class="btn btn-primary" ng-click="countrySelected()">Add</button>
+           
+
+						
+
+							<br>
+						<div id="countriesShown">
+								<button type="button" ng-repeat="thisCountry in allCountries" class="btn btn-danger" ng-click="removeCountry()" ng-bind="thisCountry"></button>
+							</div>
+
+        </div>
+    </div>
+
+
 	  </div>
 	</div>
+	
 	<div ng-cloak>
 	  <md-content>
 	    <md-tabs md-dynamic-height md-border-bottom>
 	      <md-tab label="Bar">
 	        <md-content class="md-padding">
-	          
+
 		          <canvas id="bar" class="chart chart-bar"
-		            chart-data="data" chart-labels="labels" chart-series="series"> chart-series="series">
+		            chart-data="data" chart-labels="labels" chart-series="series"> 
 		          </canvas>
 	        </md-content>
 	      </md-tab>
 
 	      <md-tab label="Line">
 	        <md-content class="md-padding">
-	          
+
 	          <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-series="series" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick"></canvas>
 	        </md-content>
 	      </md-tab>
 
 	      <md-tab label="Pie">
 	        <md-content class="md-padding">
-	          
+
 	          <canvas id="pie" class="chart chart-pie"
 	            chart-data="data" chart-labels="labels" chart-series="series" chart-options="options">
 	          </canvas>
@@ -66,24 +91,24 @@
 
 		  <md-tab label="Donut">
 		    <md-content class="md-padding">
-		      
+
 		      <canvas id="doughnut" class="chart chart-doughnut"
 		      	  chart-data="data" chart-labels="labels" chart-series="series">
 		      </canvas>
 		    </md-content>
 		  </md-tab>
-	      
+
 	      <md-tab label="Radar">
 	        <md-content class="md-padding">
-	          
+
 	          <canvas id="radar" class="chart chart-radar"
 	            chart-data="data" chart-options="options" chart-labels="labels" chart-series="series">
 	          </canvas>
 	        </md-content>
 	      </md-tab>
-	      
-	      
-	     
+
+
+
 	    </md-tabs>
 	  </md-content>
 	</div>

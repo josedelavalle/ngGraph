@@ -94,10 +94,10 @@ body, input, select, textarea {
 .container-fluid button {
   margin: auto; }
 
-a {
+#thisHeader a {
   color: white !important;
   text-decoration: none; }
-  a:hover {
+  #thisHeader a:hover {
     color: val((bg: #1c1d26, bg-transparent: rgba(23, 24, 32, 0.95), fg-bold: #ffffff, fg: rgba(255, 255, 255, 0.75), fg-light: rgba(255, 255, 255, 0.5), fg-lighter: rgba(255, 255, 255, 0.15), border: rgba(255, 255, 255, 0.3), border-bg: rgba(255, 255, 255, 0.075), border2: rgba(255, 255, 255, 0.5), border2-bg: rgba(255, 255, 255, 0.25), accent1: #e44c65, accent2: #272833, accent2-transparent: rgba(39, 40, 51, 0.965), accent3: #5480f1, accent4: #39c088), accent1...) !important;
     border-bottom-color: transparent; }
 
@@ -199,7 +199,14 @@ li:hover > ul.drop-menu.menu-1 {
   background: #ccc;
   margin: auto;
   width: 100%;
-  height: auto; }
+  height: auto;
+  display: flex-wrap; }
+
+#listYears {
+  height: 30px; }
+
+#listCountries {
+  height: 30px; }
 
 #countriesShown {
   padding: 10px;
